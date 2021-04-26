@@ -15,3 +15,7 @@
     name: haproxy
     state: started
     enabled: true
+
+- name: RESTART HAPROXY
+  notify: restart_haproxy
+
