@@ -21,6 +21,12 @@
       server: 'frontend'
     register: openstack_info
   
+  - name: OpenStack servers Info mod
+    os_server_facts:
+      cloud: openstack
+      server: 'frontend'
+    register: result
+
   - name: Check if all osp instance exist
     debug: "{{ openstack_info.openstack_servers | length }}"
     register: osp_instance
@@ -28,13 +34,15 @@
   - debug: var=osp_instance
 
 
-  - name: Access website
+  - name: Access website1
     uri:
       url: "http://{{ item.public_v4 }}"
       status_code: 200
       return_content: yes
-    when: 'item.hostname == "frontend"'
-    loop: "{{ openstack_info.openstack_servers }}"
+    when: 'item.name == "frontend"'
+   # when: 'item.hostname == "frontend"'
+    loop: "{{ result.ansible_facts.openstack_servers }}"
+   # loop: "{{ openstack_info.openstack_servers }}"
     register: qa_webpage
     ignore_errors: yes
 
