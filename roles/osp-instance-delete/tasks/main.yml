@@ -1,9 +1,6 @@
 ---
 # tasks file for roles/osp-instance-delete
-
-
-- name: Fch OSP info
-  openstack.cloud.server_info:
+- openstack.cloud.server_info:
     cloud: openstack
     server: app*
     filters:
