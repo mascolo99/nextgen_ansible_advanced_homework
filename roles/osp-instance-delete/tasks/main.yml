@@ -4,7 +4,6 @@
   - name: Fetch Instance Info
     os_server_facts:
       cloud: openstack
-      region_name: "{{osp_region}}"
     register: result
 
   - name: Delete instances
