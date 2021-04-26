@@ -2,7 +2,7 @@
 
 - name: install Tomcat
   package:
-    name: tomcat
+    name: "{{ payload }}"
     state: present
     
 - name: Create the Tomcat content directory
@@ -16,11 +16,11 @@
     dest: /usr/share/tomcat/webapps/ROOT/index.html
     mode: 0644
 
-- name: start Tomcat
+- name: Restart Tomcat, because if in debugging something fails it would not get started
   command: /bin/true
-  notify: start_tomcat
+  notify: restart_tomcat
 
 - name: enable Tomcat
   service:
-    name: tomcat
+    name: "{{ payload }}"
     enabled: yes
