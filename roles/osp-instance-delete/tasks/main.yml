@@ -1,26 +1,15 @@
 ---
 # tasks file for roles/osp-instance-delete
-- openstack.cloud.server_info:
-    cloud: openstack
-    server: app*
-    filters:
-      vm_state: active
-  register: result
-- debug:
-    msg: "{{ result.openstack_servers }}"
 
+  - name: Fetch Instance Info
+    os_server_facts:
+      cloud: openstack
+      region_name: "{{osp_region}}"
+    register: result
 
-
-- name: Fetch Instance Info
-  os_server_facts:
-    cloud: openstack
-    filters:
-      deployment_name: QA
-  register: salida
-
-
-- name: Delete instances
-  os_server_group:
-    state: absent
-    name: salida
-
+  - name: Delete instances
+    os_server:
+      cloud: openstack
+      name: "{{ item.name }}"
+      state: absent
+    loop: "{{result.ansible_facts.openstack_servers}}" 
