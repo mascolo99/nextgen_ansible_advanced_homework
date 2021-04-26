@@ -9,6 +9,19 @@
     backup: yes
 
 - name: enable repos
- 
-- name: install base tools and packages
+  template:
+    src: repos_template.j2
+    dest: /etc/yum.repos.d/treetier.repo
+    owner: root
+    group: root
+    mode: 0644 
+  shell: yum-config-manager --enable epel.repo
 
+
+- name: install base tools and packages
+  yum:
+    name:
+      - httpd
+      - haproxy
+      - python-pip
+    state: latest
