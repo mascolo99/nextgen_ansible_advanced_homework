@@ -17,5 +17,6 @@
     enabled: true
 
 - name: RESTART HAPROXY
+  command: /bin/true
   notify: restart_haproxy
 
