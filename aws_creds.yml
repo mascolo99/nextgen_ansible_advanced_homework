@@ -26,7 +26,7 @@
       kind: ssh
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
-      tower_password: r3dh4t1!
+      tower_password: sWbYB9uqNtB3
       tower_verify_ssl: no
       ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
       username: ec2-user
@@ -36,7 +36,7 @@
       credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
-      tower_password: r3dh4t1!
+      tower_password: sWbYB9uqNtB3
       tower_verify_ssl: no
       state: present
       job_type: run
@@ -48,7 +48,7 @@
       credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
-      tower_password: r3dh4t1!
+      tower_password: sWbYB9uqNtB3
       tower_verify_ssl: no
       state: present
       job_type: run

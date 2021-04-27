@@ -20,3 +20,10 @@
   command: /bin/true
   notify: restart_haproxy
 
+- name: collect facts about system services
+  shell: service "{{ payload }}" status    
+  register: services_state
+
+- name: Debug
+  debug:
+    var: services_state
