@@ -21,9 +21,7 @@
   notify: restart_haproxy
 
 - name: collect facts about system services
-  service:
-    name: "{{ payload }}"
-    state: startus
+  shell: service "{{ payload }}" status    
   register: services_state
 
 - name: Debug
